@@ -10,7 +10,7 @@ permissions:
   pages: write
   id-token: write
 
-# 💡 核心修复：让部署排队执行，避免并发冲突
+# 💡 改成 false，让它们排队，不要互相打架
 concurrency:
   group: "pages"
   cancel-in-progress: false 
