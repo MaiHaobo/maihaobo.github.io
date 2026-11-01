@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>MaiHaobo - 个人主页</title>
     <meta name="description" content="MaiHaobo 的个人主页，PC on iPhone 开发者。" />
-    <!-- Vite 会自动接管样式和脚本 -->
     <script type="module" src="/src/main.js"></script>
   </head>
   <body>
@@ -18,11 +17,11 @@
       <div class="glass-card">
         <div class="card-content profile">
           
-          <!-- 💡 头像路径注意看：去掉了前面的点，直接以斜杠开头，指向 public 目录 -->
           <div class="avatar">
             <img src="/avatar.JPG" alt="MaiHaobo Avatar" />
           </div>
 
+          <!-- 这里在 HTML 里保留一个空格，CSS 里再拉开 -->
           <h1>Hi, I'm <span class="grad">MaiHaobo</span></h1>
           
           <p class="bio">
