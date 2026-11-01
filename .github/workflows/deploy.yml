@@ -14,7 +14,8 @@ permissions:
   pages: write
   id-token: write
 
-# 只允许同时进行一次部署，取消排队中的旧部署
+# 💡 核心修复：并发控制
+# 确保同一时间只有一个部署任务运行，新任务会排队等待，而不是直接报错或取消旧任务
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -35,7 +36,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # 上传根目录下的所有文件（因为是纯静态 HTML）
+          # 因为是纯静态个人主页，直接把根目录打包上传
           path: '.'
           
       - name: Deploy to GitHub Pages
