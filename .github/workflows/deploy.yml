@@ -1,21 +1,15 @@
 name: Deploy static content to Pages
 
 on:
-  # 只有在推送到 main 分支时才触发部署
   push:
     branches: ["main"]
-
-  # 允许你在 Actions 标签页手动触发部署
   workflow_dispatch:
 
-# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 💡 核心修复：并发控制
-# 确保同一时间只有一个部署任务运行，新任务会排队等待，而不是直接报错或取消旧任务
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -33,10 +27,16 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
+      # 💡 新增一步：在上传前清理掉同名的旧 artifacts，防止冲突
+      - name: Clean up old artifacts
+        uses: c-hive/gha-remove-artifacts@v1
+        with:
+          age: '1 minutes'
+          skip-recent: 0
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # 因为是纯静态个人主页，直接把根目录打包上传
           path: '.'
           
       - name: Deploy to GitHub Pages
