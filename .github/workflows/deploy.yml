@@ -1,4 +1,4 @@
-name: Deploy static content to Pages
+name: Deploy Vite site to Pages
 
 on:
   push:
@@ -15,29 +15,32 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Build
+        run: npm run build
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
-      # 💡 新增一步：在上传前清理掉同名的旧 artifacts，防止冲突
-      - name: Clean up old artifacts
-        uses: c-hive/gha-remove-artifacts@v1
-        with:
-          age: '1 minutes'
-          skip-recent: 0
-
+      # 💡 注意这里：Vite 打包后是在 dist 目录，所以我们上传 dist
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: './dist'
           
       - name: Deploy to GitHub Pages
         id: deployment
