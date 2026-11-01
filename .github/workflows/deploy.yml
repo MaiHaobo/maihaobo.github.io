@@ -10,9 +10,10 @@ permissions:
   pages: write
   id-token: write
 
+# 💡 核心修复：强制取消正在进行的旧任务，防止排队卡死
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true 
 
 jobs:
   build:
@@ -25,7 +26,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # 💡 核心修改：删掉了 cache: 'npm'，不再要求必须有 lock 文件
           
       - name: Install dependencies
         run: npm install
