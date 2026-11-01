@@ -73,7 +73,7 @@
         width: 100%;
         max-width: 560px;
         display: grid;
-        gap: 20px;
+        gap: 24px; /* 稍微拉大卡片之间的间距 */
       }
 
       .glass-card {
@@ -112,7 +112,7 @@
       .card-content {
         position: relative;
         z-index: 1;
-        padding: 40px;
+        padding: 40px 30px; /* 稍微调整左右留白 */
       }
 
       /* =========================================
@@ -122,15 +122,15 @@
         text-align: center;
       }
 
-      /* 💡 修改：头像容器，适配图片显示 */
       .avatar {
         width: 90px;
         height: 90px;
-        border-radius: 24px; /* 配合像素风的圆角 */
+        border-radius: 24px; 
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 20px;
+        /* 💡 修改点 1：把头像下方的间距从 20px 拉大到 32px */
+        margin-bottom: 32px; 
         box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2), inset 0 0 0 1px var(--hairline);
         overflow: hidden;
         background: var(--page);
@@ -140,29 +140,33 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        /* 如果图片是像素画，建议关闭平滑渲染以保持边缘锐利 */
         image-rendering: pixelated; 
       }
 
       h1 {
-        font-size: 2rem;
-        margin: 0 0 8px 0;
-        letter-spacing: -0.03em;
+        font-size: 1.85rem; /* 稍微缩小一点点，防溢出 */
+        /* 💡 修改点 2：增加行高，让文字上下有呼吸感 */
+        line-height: 1.3; 
+        margin: 0 0 12px 0;
+        letter-spacing: -0.02em;
         font-weight: 640;
       }
 
+      /* 💡 修改点 3：让渐变色名字和前面的字拉开距离 */
       .grad {
         background: linear-gradient(105deg, #2f6ae0 0%, #7a3ff2 46%, #0d9e85 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
+        display: inline-block;
+        margin-left: 6px; 
       }
 
       .bio {
         color: var(--ink-soft);
-        font-size: 1rem;
-        line-height: 1.6;
-        margin: 0 0 24px 0;
+        font-size: 0.95rem;
+        line-height: 1.7; /* 增加行高，不那么挤 */
+        margin: 0 0 28px 0;
       }
 
       .social-links {
@@ -174,8 +178,8 @@
       .social-btn {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        padding: 10px 18px;
+        gap: 8px;
+        padding: 12px 22px; /* 按钮稍微变大一点点 */
         border-radius: 999px;
         background: rgba(20, 30, 60, 0.05);
         color: var(--ink);
@@ -207,6 +211,7 @@
         display: flex;
         align-items: center;
         gap: 8px;
+        padding-left: 8px;
       }
       .section-title::before {
         content: "";
@@ -246,7 +251,7 @@
         display: flex;
         align-items: center;
         gap: 16px;
-        margin-bottom: 12px;
+        margin-bottom: 16px; /* 拉开图标和描述的间距 */
       }
 
       .project-icon {
@@ -273,8 +278,8 @@
       .project-desc {
         color: var(--ink-soft);
         font-size: 0.95rem;
-        line-height: 1.6;
-        margin: 0 0 20px 0;
+        line-height: 1.7; /* 增加行高 */
+        margin: 0 0 24px 0;
       }
 
       .project-tags {
@@ -284,7 +289,7 @@
 
       .tag {
         font-size: 0.8rem;
-        padding: 4px 12px;
+        padding: 6px 12px;
         border-radius: 8px;
         background: rgba(20, 30, 60, 0.05);
         color: var(--ink-soft);
@@ -300,6 +305,7 @@
         color: var(--ink-soft);
         font-size: 0.8rem;
         margin-top: 10px;
+        line-height: 1.6;
       }
       .footer a {
         color: inherit;
@@ -317,12 +323,14 @@
       <div class="glass-card">
         <div class="card-content profile">
           
-          <!-- 💡 替换为你上传的像素头像 -->
+          <!-- 💡 这里记得检查你的图片名字，如果是 jpg 就把 png 改掉 -->
           <div class="avatar">
-            <img src="./avatar.JPG" alt="MaiHaobo Avatar" />
+            <img src="./avatar.png" alt="MaiHaobo Avatar" />
           </div>
 
+          <!-- 文字间距已经通过 CSS 调整 -->
           <h1>Hi, I'm <span class="grad">MaiHaobo</span></h1>
+          
           <p class="bio">
             iOS 开发者 / 开源爱好者。<br>
             热衷于探索 iOS 系统的底层边界。
@@ -373,8 +381,8 @@
 
       <!-- 页脚版权 -->
       <div class="footer">
-        <p>Powered by <a href="https://getutm.app" target="_blank" rel="noopener">UTM</a></p>
-        <p>© <span id="year"></span> MaiHaobo. All rights reserved.</p>
+        <p style="margin: 0 0 4px 0;">Powered by <a href="https://getutm.app" target="_blank" rel="noopener">UTM</a></p>
+        <p style="margin: 0;">© <span id="year"></span> MaiHaobo. All rights reserved.</p>
       </div>
 
     </main>
