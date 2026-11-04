@@ -7,7 +7,7 @@
     <meta name="description" content="MaiHaobo 的个人主页，PC on iPhone 开发者。" />
     <style>
       /* =========================================
-         1. 全局变量 (与 PC on iPhone 官网一致)
+         1. 全局变量
          ========================================= */
       :root {
         --page: #ffffff;
@@ -309,10 +309,6 @@
         margin-top: 10px;
         line-height: 1.6;
       }
-      .footer a {
-        color: inherit;
-        text-decoration: underline;
-      }
     </style>
   </head>
   <body>
@@ -354,15 +350,13 @@
       <div>
         <div class="section-title">主要项目</div>
         
-        <a href="https://maihaobo.github.io/PC-on-iPhone-Website/" class="glass-card project-card">
+        <!-- 卡片 1: PC on iPhone -->
+        <a href="https://maihaobo.github.io/PC-on-iPhone-Website/" class="glass-card project-card" style="margin-bottom: 20px;">
           <div class="card-content">
             <div class="project-header">
-              
-              <!-- 💡 直接使用本地相对路径 -->
               <div class="project-icon">
                 <img src="./logo.PNG" alt="PC on iPhone Logo" />
               </div>
-              
               <h2 class="project-title">PC on iPhone</h2>
             </div>
             
@@ -377,6 +371,32 @@
             </div>
           </div>
         </a>
+
+        <!-- 💡 卡片 2: Siri Wave 实验 (新增) -->
+        <a href="./siri-wave.html" class="glass-card project-card">
+          <div class="card-content">
+            <div class="project-header">
+              <div class="project-icon" style="background: rgba(122, 63, 242, 0.1); color: var(--tint-2);">
+                <!-- 一个动态声波的 SVG 图标 -->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v20M17 5v14M22 10v4M7 5v14M2 10v4"/>
+                </svg>
+              </div>
+              <h2 class="project-title">Siri Wave 实验</h2>
+            </div>
+            
+            <p class="project-desc">
+              使用 Liquid Glass 渲染技术构建的 Siri 波浪线网页实验。极致的视觉体验，感受流动的液态玻璃质感。
+            </p>
+            
+            <div class="project-tags">
+              <span class="tag">WebGL</span>
+              <span class="tag">Liquid Glass</span>
+              <span class="tag">实验性</span>
+            </div>
+          </div>
+        </a>
+
       </div>
 
       <!-- 页脚版权 -->
