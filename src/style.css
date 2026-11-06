@@ -3,7 +3,6 @@
    ========================================= */
 @font-face {
   font-family: 'Macintosh Skeletal';
-  /* 如果你传了 woff2，它会优先加载 woff2（更快） */
   src: url('/MacintoshSkeletalFilled.woff2') format('woff2'),
        url('/MacintoshSkeletalFilled.otf') format('opentype');
   font-weight: normal;
@@ -155,13 +154,28 @@ h1 {
   font-weight: 640;
 }
 
-/* 💡 调用你上传的苹果字体 */
+/* 💡 彩虹渐变色专属字体 */
 .skeletal-font {
   font-family: 'Macintosh Skeletal', cursive !important;
-  font-size: 1.8rem !important;
+  font-size: 1.2rem !important; /* 加了渐变后稍微放大点更好看 */
   line-height: 0.8 !important;
   display: inline-block;
   margin-bottom: 12px;
+  
+  /* 💡 核心魔法：彩虹渐变文字 */
+  /* 从图片里提取的蓝、绿、黄、橙、红、紫 */
+  background-image: linear-gradient(90deg, #5b86e5, #00d2ff, #00e676, #ffeb3b, #ff5722, #e91e63, #9c27b0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important; 
+  -webkit-text-fill-color: transparent !important; /* 强制 Safari 透明 */
+}
+
+/* 暗黑模式下的渐变色微调（更亮一点） */
+@media (prefers-color-scheme: dark) {
+  .skeletal-font {
+    background-image: linear-gradient(90deg, #7facff, #00e5ff, #69f0ae, #ffff8d, #ff8a65, #ff4081, #ea80fc);
+  }
 }
 
 .grad {
