@@ -1,5 +1,27 @@
 /* =========================================
-   1. 全局变量 (与 PC on iPhone 官网一致)
+   0. 专属字体引入 (Macintosh Skeletal)
+   ========================================= */
+@font-face {
+  font-family: 'Macintosh Skeletal';
+  /* 这里的路径指向你 public 文件夹里的字体文件 */
+  src: url('/MacintoshSkeletalFilled.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 专属于 "Hi" 的样式 */
+.skeletal-font {
+  font-family: 'Macintosh Skeletal', cursive;
+  font-size: 2.4rem; /* 手写体通常偏小，稍微调大一点 */
+  font-weight: 400;
+  letter-spacing: 0;
+  vertical-align: middle; /* 和后面的英文字母对齐 */
+  margin-right: 6px;
+}
+
+/* =========================================
+   1. 全局变量
    ========================================= */
 :root {
   --page: #ffffff;
@@ -138,7 +160,7 @@ h1 {
   font-size: 1.85rem;
   line-height: 1.3; 
   margin: 0 0 12px 0;
-  letter-spacing: 0.02em; /* 💡 修改：拉大整体字间距，不拥挤 */
+  letter-spacing: 0.02em;
   font-weight: 640;
 }
 
@@ -148,7 +170,7 @@ h1 {
   background-clip: text;
   color: transparent;
   display: inline-block;
-  margin-left: 12px; /* 💡 修改：强制拉开 "I'm" 和 "MaiHaobo" 的距离 */
+  margin-left: 8px; 
 }
 
 .bio {
@@ -178,12 +200,10 @@ h1 {
   box-shadow: inset 0 0 0 1px var(--hairline);
   transition: background 0.2s, transform 0.2s;
 }
-
 .social-btn:hover {
   background: rgba(20, 30, 60, 0.1);
   transform: translateY(-2px);
 }
-
 @media (prefers-color-scheme: dark) {
   .social-btn { background: rgba(255, 255, 255, 0.1); }
   .social-btn:hover { background: rgba(255, 255, 255, 0.15); }
@@ -204,17 +224,14 @@ h1 {
   gap: 8px;
   padding-left: 8px;
 }
-
 .section-title::before {
   content: "";
   display: block;
-  width: 6px; 
-  height: 6px;
+  width: 6px; height: 6px;
   border-radius: 50%;
   background: #46d6a8;
   box-shadow: 0 0 10px #46d6a8;
 }
-
 @media (prefers-color-scheme: dark) {
    .section-title { color: rgba(245, 246, 250, 0.42); }
 }
@@ -225,7 +242,6 @@ h1 {
   color: inherit;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-
 .project-card:hover {
   transform: translateY(-4px);
   box-shadow:
@@ -233,7 +249,6 @@ h1 {
     inset 0 1px 1px rgba(255, 255, 255, 1),
     inset 0 0 0 1px var(--hairline);
 }
-
 @media (prefers-color-scheme: dark) {
   .project-card:hover {
     box-shadow:
@@ -251,19 +266,23 @@ h1 {
 }
 
 .project-icon {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 12px;
-  background: rgba(20, 30, 60, 0.05);
-  box-shadow: inset 0 0 0 1px var(--hairline);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--tint);
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
+  flex: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  .project-icon { background: rgba(255, 255, 255, 0.1); }
+.project-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
 }
 
 .project-title {
@@ -292,7 +311,6 @@ h1 {
   color: var(--ink-soft);
   box-shadow: inset 0 0 0 1px var(--hairline);
 }
-
 @media (prefers-color-scheme: dark) {
   .tag { background: rgba(255, 255, 255, 0.1); }
 }
@@ -304,9 +322,4 @@ h1 {
   font-size: 0.8rem;
   margin-top: 10px;
   line-height: 1.6;
-}
-
-.footer a {
-  color: inherit;
-  text-decoration: underline;
 }
