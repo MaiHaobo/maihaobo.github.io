@@ -1,22 +1,14 @@
 /* =========================================
-   0. 专属字体引入 (Macintosh Skeletal)
+   💡 引入你的专属苹果字体
    ========================================= */
 @font-face {
   font-family: 'Macintosh Skeletal';
-  src: url('/MacintoshSkeletalFilled.woff2') format('opentype');
+  /* 如果你传了 woff2，它会优先加载 woff2（更快） */
+  src: url('/MacintoshSkeletalFilled.woff2') format('woff2'),
+       url('/MacintoshSkeletalFilled.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
-
-/* 专属于 "Hi" 的样式（调整为单独一行的比例） */
-.skeletal-font {
-  font-family: 'Macintosh Skeletal', cursive;
-  font-size: 4.5rem; /* 💡 字体放大了，因为现在它独占一行 */
-  line-height: 0.8; /* 稍微压缩一下行高，让它离下面的字更紧凑 */
-  font-weight: 400;
-  display: inline-block;
-  margin-bottom: 8px; /* 给下方留一点点呼吸空间 */
 }
 
 /* =========================================
@@ -155,13 +147,21 @@ body {
   image-rendering: pixelated; 
 }
 
-/* 💡 修改了 h1 的样式，让两行排版更漂亮 */
 h1 {
   font-size: 1.85rem;
-  line-height: 1.4; /* 增加两行之间的行高 */
+  line-height: 1.4; 
   margin: 0 0 16px 0;
   letter-spacing: 0.02em;
   font-weight: 640;
+}
+
+/* 💡 调用你上传的苹果字体 */
+.skeletal-font {
+  font-family: 'Macintosh Skeletal', cursive !important;
+  font-size: 4.5rem !important;
+  line-height: 0.8 !important;
+  display: inline-block;
+  margin-bottom: 12px;
 }
 
 .grad {
@@ -170,6 +170,7 @@ h1 {
   background-clip: text;
   color: transparent;
   display: inline-block;
+  margin-left: 12px; 
 }
 
 .bio {
