@@ -146,27 +146,28 @@ body {
   image-rendering: pixelated; 
 }
 
+/* 💡 调整了 h1 的行高，给内部怪异的字体留足垂直空间 */
 h1 {
   font-size: 1.85rem;
-  line-height: 1.4; 
+  line-height: 2.2; /* 加大 */
   margin: 0 0 16px 0;
   letter-spacing: 0.02em;
   font-weight: 640;
 }
 
-/* 💡 调整为完美容纳 "hello" 的尺寸 */
+/* 💡 解决上下被裁切的终极版 */
 .skeletal-font {
   font-family: 'Macintosh Skeletal', cursive !important;
-  
-  /* 从 2.8rem 降到 1.8rem，适应 5 个字母的宽度 */
   font-size: 1.8rem !important; 
-  line-height: 1.2 !important; 
+  
+  /* 关键1：把行高撑得大大的 */
+  line-height: 2 !important; 
   display: inline-block; 
   
-  padding: 10px 0; 
-  margin-bottom: 4px;
+  /* 关键2：加厚上下的 padding 作为安全缓冲带 */
+  padding: 24px 0; 
+  margin-bottom: -10px; /* 抵消掉 padding 带来的多余间隙 */
   
-  /* 核心魔法：彩虹渐变文字 */
   background-image: linear-gradient(90deg, #5b86e5, #00d2ff, #00e676, #ffeb3b, #ff5722, #e91e63, #9c27b0);
   -webkit-background-clip: text;
   background-clip: text;
@@ -174,7 +175,7 @@ h1 {
   -webkit-text-fill-color: transparent !important; 
 }
 
-/* 暗黑模式下的渐变色微调（更亮一点） */
+/* 暗黑模式下的渐变色微调 */
 @media (prefers-color-scheme: dark) {
   .skeletal-font {
     background-image: linear-gradient(90deg, #7facff, #00e5ff, #69f0ae, #ffff8d, #ff8a65, #ff4081, #ea80fc);
