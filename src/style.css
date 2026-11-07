@@ -154,19 +154,16 @@ h1 {
   font-weight: 640;
 }
 
-/* 💡 彩虹渐变色专属字体（自适应缩放，绝不溢出） */
+/* 💡 彩虹渐变色专属字体（退回最安全写法） */
 .skeletal-font {
   font-family: 'Macintosh Skeletal', cursive !important;
   
-  /* 使用 clamp 函数，根据屏幕宽度自动调整大小，最大不超过 4.5rem */
-  font-size: clamp(2.5rem, 15vw, 4.5rem) !important; 
+  /* 固定 2.8rem 是之前测试完美不被切的尺寸 */
+  font-size: 2.8rem !important; 
+  line-height: 1.3 !important; 
+  display: inline-block; /* 改回 inline-block，防止被拉伸 */
   
-  line-height: 1.2 !important; 
-  display: block; /* 改为 block 独占一行，方便居中 */
-  width: 100%;
-  text-align: center;
-  padding-top: 10px; 
-  padding-bottom: 10px;
+  padding: 10px 0; 
   margin-bottom: 4px;
   
   /* 核心魔法：彩虹渐变文字 */
