@@ -519,6 +519,19 @@
 
         .nav-links a { padding: 12px 14px; border-radius: 14px; }
       }
+
+      /* ---------------- iOS 式连续曲率圆角（Squircle） ---------------- */
+      @supports (corner-shape: squircle) {
+        .glass-card,
+        .avatar,
+        .project-icon,
+        .tag,
+        .brand-mark,
+        .nav-links,
+        .nav-links a { corner-shape: squircle; }
+
+        .glass-card::after { corner-shape: inherit; }
+      }
     </style>
   </head>
   <body>
