@@ -522,13 +522,13 @@
 
       /* ---------------- iOS 式连续曲率圆角（Squircle） ---------------- */
       @supports (corner-shape: squircle) {
-        .glass-card,
-        .avatar,
-        .project-icon,
-        .tag,
-        .brand-mark,
-        .nav-links,
-        .nav-links a { corner-shape: squircle; }
+        .glass-card { corner-shape: squircle; border-radius: 46px; }
+        .avatar { corner-shape: squircle; border-radius: 32px; }
+        .project-icon { corner-shape: squircle; border-radius: 16px; }
+        .tag { corner-shape: squircle; border-radius: 11px; }
+        .brand-mark { corner-shape: squircle; border-radius: 11px; }
+        .nav-links { corner-shape: squircle; border-radius: 32px; }
+        .nav-links a { corner-shape: squircle; border-radius: 20px; }
 
         .glass-card::after { corner-shape: inherit; }
       }

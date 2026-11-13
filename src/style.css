@@ -335,3 +335,14 @@ h1 {
   margin-top: 10px;
   line-height: 1.6;
 }
+/* iOS 式连续曲率圆角（Squircle，放大版） */
+@supports (corner-shape: squircle) {
+  .glass-card { corner-shape: squircle; border-radius: 46px; }
+  .glass-card::after { corner-shape: inherit; }
+  .avatar { corner-shape: squircle; border-radius: 32px; }
+  .project-icon { corner-shape: squircle; border-radius: 16px; }
+  .tag { corner-shape: squircle; border-radius: 11px; }
+  .brand-mark { corner-shape: squircle; border-radius: 11px; }
+  .nav-links { corner-shape: squircle; border-radius: 32px; }
+  .nav-links a { corner-shape: squircle; border-radius: 20px; }
+}
