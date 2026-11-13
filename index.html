@@ -33,6 +33,10 @@
         --tint: #2f6ae0;
         --tint-2: #7a3ff2;
         --glass-bg: rgba(255, 255, 255, 0.75);
+        --gutter: clamp(20px, 5vw, 56px);
+        --lift: rgba(20, 30, 60, 0.05);
+        --menu-bg: rgba(255, 255, 255, 0.97);
+        --ink-faint: rgba(20, 22, 29, 0.42);
       }
 
       @media (prefers-color-scheme: dark) {
@@ -44,6 +48,9 @@
           --tint: #4c8dff;
           --tint-2: #9a6bff;
           --glass-bg: rgba(30, 32, 38, 0.75);
+          --lift: rgba(255, 255, 255, 0.09);
+          --menu-bg: rgba(16, 17, 22, 0.97);
+          --ink-faint: rgba(245, 246, 250, 0.42);
         }
       }
 
@@ -56,9 +63,8 @@
         background: var(--page);
         color: var(--ink);
         display: flex;
-        align-items: center;
         justify-content: center;
-        padding: 20px;
+        padding: calc(86px + env(safe-area-inset-top)) 20px 40px;
         -webkit-font-smoothing: antialiased;
         overflow-x: clip;
       }
@@ -90,6 +96,7 @@
         max-width: 560px;
         display: grid;
         gap: 24px;
+        margin-block: auto;
       }
 
       .glass-card {
@@ -347,10 +354,201 @@
         margin-top: 10px;
         line-height: 1.6;
       }
+
+      /* ---------------- 顶部导航（与 404 页同一套材质） ---------------- */
+      .site-nav-wrap {
+        position: fixed;
+        top: calc(14px + env(safe-area-inset-top));
+        left: 0;
+        right: 0;
+        z-index: 50;
+        padding-inline: var(--gutter);
+        pointer-events: none;
+      }
+
+      .site-nav-wrap .site-nav { pointer-events: auto; }
+
+      .site-nav {
+        position: relative;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px 8px 18px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        box-shadow:
+          0 18px 44px -20px rgba(30, 45, 90, 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.95),
+          inset 0 0 0 1px var(--hairline);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .site-nav {
+          background: rgba(26, 28, 34, 0.66);
+          box-shadow:
+            0 18px 44px -20px rgba(0, 0, 0, 0.75),
+            inset 0 1px 0 rgba(255, 255, 255, 0.09),
+            inset 0 0 0 1px var(--hairline);
+        }
+      }
+
+      .site-nav::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 34%);
+        mix-blend-mode: screen;
+        opacity: 0.5;
+      }
+
+      .site-nav > * { position: relative; z-index: 1; }
+
+      .site-nav a { text-decoration: none; }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 640;
+        letter-spacing: -0.02em;
+        font-size: 0.98rem;
+        white-space: nowrap;
+        margin-right: auto;
+        color: var(--ink);
+      }
+
+      .brand-mark {
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        overflow: hidden;
+        flex: none;
+      }
+
+      .brand-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+      .nav-links { display: flex; align-items: center; gap: 2px; }
+
+      .nav-links a {
+        display: block;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        color: var(--ink-soft);
+        white-space: nowrap;
+        transition: background-color 0.18s ease, color 0.18s ease;
+      }
+
+      .nav-links a:hover { color: var(--ink); background: var(--lift); }
+
+      .nav-links a[aria-current="page"] {
+        color: var(--ink);
+        background: var(--lift);
+        font-weight: 600;
+      }
+
+      .nav-cta {
+        padding: 9px 18px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        background: #16181f;
+        color: #fff;
+        white-space: nowrap;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .nav-cta { background: #fff; color: #0b0c10; }
+      }
+
+      .nav-cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 22px -6px rgba(20, 30, 60, 0.35);
+      }
+
+      .nav-toggle {
+        display: none;
+        width: 40px;
+        height: 40px;
+        border: 0;
+        border-radius: 50%;
+        background: var(--lift);
+        color: var(--ink);
+        cursor: pointer;
+        place-items: center;
+        padding: 0;
+      }
+
+      @media (max-width: 950px) {
+        .nav-toggle { display: grid; }
+        .nav-cta { display: none; }
+
+        .nav-links {
+          position: absolute;
+          top: calc(100% + 10px);
+          left: 10px;
+          right: 10px;
+          flex-direction: column;
+          align-items: stretch;
+          padding: 10px;
+          border-radius: 24px;
+          background: var(--menu-bg);
+          backdrop-filter: blur(20px) saturate(1.5);
+          -webkit-backdrop-filter: blur(20px) saturate(1.5);
+          box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12), inset 0 0 0 1px var(--hairline);
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-6px);
+          transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+          z-index: 101;
+        }
+
+        .site-nav[data-open="true"] .nav-links {
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+        }
+
+        .nav-links a { padding: 12px 14px; border-radius: 14px; }
+      }
     </style>
   </head>
   <body>
-    
+    <div class="site-nav-wrap">
+      <nav class="site-nav" aria-label="主导航">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="/avatar.JPG" alt="" width="26" height="26" />
+          </span>
+          牛肉丸本丸
+        </a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="切换菜单">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+
+        <div class="nav-links" id="nav-menu">
+          <a href="/" aria-current="page">首页</a>
+          <a href="/PC-on-iPhone-Website/index.html">PC on iPhone</a>
+          <a href="/siri-wave.html">Siri Wave 实验</a>
+        </div>
+
+        <a class="nav-cta" href="/PC-on-iPhone-Website/download.html">立即下载 PC on iPhone</a>
+      </nav>
+    </div>
+
+
     <div class="page-bg"></div>
 
     <main class="container">
@@ -445,6 +643,31 @@
 
     </main>
 
+    <script>
+      (function () {
+        var nav = document.querySelector(".site-nav");
+        var toggle = document.querySelector(".nav-toggle");
+        if (nav && toggle) {
+          toggle.addEventListener("click", function () {
+            var open = nav.dataset.open !== "true";
+            nav.dataset.open = String(open);
+            toggle.setAttribute("aria-expanded", String(open));
+          });
+          document.addEventListener("click", function (e) {
+            if (!nav.contains(e.target)) {
+              nav.dataset.open = "false";
+              toggle.setAttribute("aria-expanded", "false");
+            }
+          });
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+              nav.dataset.open = "false";
+              toggle.setAttribute("aria-expanded", "false");
+            }
+          });
+        }
+      })();
+    </script>
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>

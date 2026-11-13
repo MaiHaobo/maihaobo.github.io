@@ -43,9 +43,8 @@ body {
   background: var(--page);
   color: var(--ink);
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: calc(86px + env(safe-area-inset-top)) 20px 40px;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
@@ -77,6 +76,7 @@ body {
   max-width: 560px;
   display: grid;
   gap: 24px;
+  margin-block: auto;
 }
 
 .glass-card {
