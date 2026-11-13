@@ -202,8 +202,9 @@ h1 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 22px; 
+  padding: 12px 22px;
   border-radius: 999px;
+  corner-shape: squircle;
   background: rgba(20, 30, 60, 0.05);
   color: var(--ink);
   text-decoration: none;
@@ -344,5 +345,5 @@ h1 {
   .tag { corner-shape: squircle; border-radius: 11px; }
   .brand-mark { corner-shape: squircle; border-radius: 11px; }
   .nav-links { corner-shape: squircle; border-radius: 32px; }
-  .nav-links a { corner-shape: squircle; border-radius: 20px; }
+  .nav-links a { corner-shape: squircle; }
 }
